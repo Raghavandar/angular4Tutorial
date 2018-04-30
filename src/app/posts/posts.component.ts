@@ -16,18 +16,22 @@ export class PostsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.service.getAll().subscribe(
-      response => {
-      this.posts = response.json();
-    });
+    this.service.getAll().subscribe(posts => this.posts = posts);
   }
 
   postData(input: HTMLInputElement) {
     const postObj = {title: input.value};
+    this.posts.splice(0, 0, postObj);
+
+    input.value = '';
+
     this.service.post(postObj).subscribe(
-      response => {
-      console.log(response.json());
+      newPost => {
+        postObj['id'] = newPost.id;
+      console.log(newPost.id);
     }, (error: AppError) => {
+      this.posts.splice(0, 1);
+
       if (error instanceof BadInput) {
         alert(error.originalError);
       } else {
@@ -38,8 +42,8 @@ export class PostsComponent implements OnInit {
 
   patchData(post) {
     this.service.patch(post.id).subscribe(
-      response => {
-      console.log(response.json());
+      newPost => {
+      console.log(newPost.id);
     }, (error: AppError) => {
       if (error instanceof BadInput) {
         alert(error.originalError);
@@ -50,12 +54,15 @@ export class PostsComponent implements OnInit {
   }
 
   deleteData(post) {
+    const index = this.posts.indexOf(post);
+    this.posts.splice(index, 1);
+
     this.service.delete(post.id).subscribe(
-      response => {
-      console.log(response.json());
-      const index = this.posts.indexOf(post);
-      this.posts.splice(index, 1);
+      newPost => {
+      console.log(newPost.id);
     }, (error: AppError) => {
+      this.posts.splice(index, 0, post);
+
       if (error instanceof NotFoundError) {
         alert('Post already deleted');
       } else {

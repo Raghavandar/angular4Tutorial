@@ -16,6 +16,8 @@ import { PostsComponent } from './posts/posts.component';
 import { PostsService } from './services/posts.service';
 import { AppErrorHandler } from './common/app-error-handler';
 import { DataService } from './common/data-service';
+import { GithubFollowersComponent } from './github-followers/github-followers.component';
+import { GithubFollowersService } from './services/github-followers.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { DataService } from './common/data-service';
     LikeComponent,
     TextFormatDirective,
     ContactFormComponent,
-    PostsComponent
+    PostsComponent,
+    GithubFollowersComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,8 @@ import { DataService } from './common/data-service';
     CoursesService,
     PostsService,
     {provide: ErrorHandler, useClass: AppErrorHandler},
-    DataService
+    DataService,
+    GithubFollowersService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,11 @@
+<h1>Angular Project</h1>
+<app-courses></app-courses><br>
+<app-favorite [fav-title]="title" (alias-change)="onFavoriteChange($event)"></app-favorite>
+<app-panel>
+    <ng-container class="heading">Panel Header</ng-container>
+    <div class="body">Panel Body....</div>
+</app-panel>
+<app-like [isLiked]="like.isLiked" [noOfLikes]="like.noOfLikes"></app-like><br>
+<input type="text" [appTextFormat]="'uppercase'"/><br>
+<app-contact-form></app-contact-form>
+<app-posts></app-posts>

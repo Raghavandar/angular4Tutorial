@@ -1,0 +1,11 @@
+.fa {
+    cursor: pointer;
+}
+
+.selected {
+    color: deepPink;
+}
+
+.unselected {
+    color: #ccc;
+}

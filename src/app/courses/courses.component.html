@@ -1,0 +1,23 @@
+<p>
+  courses works!
+</p>
+<h2>{{courseList.length+ ' Courses'}}</h2>
+<ul>
+  <li *ngFor="let course of courseList; index as i">{{i}} - {{course}}</li>
+</ul>
+<div>
+  <button class="btn btn-primary" [class.active]="isActive" [style.backgroundColor]="isActive ? 'green' : 'red'">Save</button>
+</div><br>
+<div>
+  <input #email (keyup.enter)="onEnterClick(email.value)"/>
+</div><br>
+<div>
+  <input [(ngModel)]="name" (keyup.enter)="onEnterClickName()"/>
+</div><br>
+<h4>Pipes</h4>
+<div>
+  {{name | uppercase}}<br>
+  {{amount | number:'1.1-1'}}<br>
+  {{dateOfBirth | date:'short'}}<br>
+  {{summaryText | summary}}
+</div>

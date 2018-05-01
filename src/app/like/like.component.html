@@ -1,0 +1,8 @@
+<div>
+  <span class="fa fa-heart" [class.selected]="isLiked" [class.unselected]="!isLiked" (click)="toggleLike()"></span>
+  <span>{{noOfLikes}}</span>
+  <span *ngIf="isLiked; then likedMsg else noReaction"></span><br>
+  <span [hidden]="!isLiked">User liked the post!!</span>
+</div>
+<ng-template #likedMsg>User liked the post!!</ng-template>
+<ng-template #noReaction>No reaction from the user!!</ng-template>
